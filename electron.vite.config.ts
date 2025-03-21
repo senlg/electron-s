@@ -6,7 +6,12 @@ import UnoCSS from 'unocss/vite'
 export default defineConfig({
   main: {
     plugins: [externalizeDepsPlugin()],
-    envDir: './env',
+    envDir: './src/env',
+    resolve: {
+      alias: {
+        '@': resolve('./src/main')
+      }
+    },
     build: {
       rollupOptions: {
         input: {
@@ -22,9 +27,11 @@ export default defineConfig({
     }
   },
   preload: {
+    envDir: './src/env',
     plugins: [externalizeDepsPlugin()]
   },
   renderer: {
+    envDir: './src/env',
     resolve: {
       alias: {
         '@renderer': resolve('src/renderer/src')

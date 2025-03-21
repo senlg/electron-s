@@ -1,8 +1,8 @@
 import { app, BrowserWindow } from 'electron'
 import { createWindow } from './window'
 import { optimizer } from '@electron-toolkit/utils'
-import { GlobalObject } from './global'
-import { config } from './config'
+import { GlobalObject } from '../global'
+import { config } from '../global/config'
 export const appMountListener = () => {
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

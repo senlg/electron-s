@@ -1,5 +1,5 @@
 import * as path from 'path'
-import icon from '../../resources/icon.png?asset'
+import icon from '@/../../resources/icon.png?asset'
 export const config: Electron.BrowserWindowConstructorOptions = {
   width: 1366,
   height: 768,
@@ -8,9 +8,9 @@ export const config: Electron.BrowserWindowConstructorOptions = {
   frame: false,
   transparent: true,
   icon,
-  title: 'myelectronapp',
+  title: import.meta.env.VITE_APP_TITLE,
   webPreferences: {
-    preload: path.join(__dirname, '../preload/index.js'),
+    preload: path.join(__dirname, '../../preload/index.js'),
     sandbox: false
   }
 }

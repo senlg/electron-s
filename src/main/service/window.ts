@@ -1,7 +1,7 @@
 import { is } from '@electron-toolkit/utils'
 import { BrowserWindow, shell } from 'electron'
 import * as path from 'path'
-import { GlobalObject } from './global'
+import { GlobalObject } from '../global'
 
 export function createWindow(config: Electron.BrowserWindowConstructorOptions): BrowserWindow {
   // Create the browser window.

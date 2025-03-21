@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron'
 import { GlobalObject } from '../global'
-import { ViewConfig } from '../global/viewManager'
+import { ViewConfig } from '../service/viewManager'
 
 export default class TabViewApi {
   createTabView() {

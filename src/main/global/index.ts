@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { ViewManager } from './viewManager'
+import { ViewManager } from '../service/viewManager'
 
 export const GlobalObject: {
   window: Electron.BrowserWindow | null

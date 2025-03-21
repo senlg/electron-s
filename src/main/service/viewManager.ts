@@ -1,5 +1,5 @@
 import { BrowserWindow, WebContentsView, WebContentsViewConstructorOptions } from 'electron'
-import { GlobalObject } from '.'
+import { GlobalObject } from '../global'
 import path from 'path'
 
 export class ViewManager {
@@ -15,7 +15,6 @@ export class ViewManager {
     bw: BrowserWindow = GlobalObject.window!
   ) {
     const bwBounds = bw.getBounds()
-    // TODO 渲染进程传递过来 x，y
     view.setBounds({
       x,
       y,

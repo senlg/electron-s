@@ -4,7 +4,6 @@ const ipcHandle2 = (): void => window.electron.ipcRenderer.send('createTabView',
   url: 'https://www.facebook.com/messages/t/lanhai/',
   name: "senlg-https://www.facebook.com/messages/t/lanhai/"
 })
-
 const ipcHandle3 = () => {
   window.electron.ipcRenderer.send('test', { a: "测试" })
 }

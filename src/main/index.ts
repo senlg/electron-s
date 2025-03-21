@@ -1,54 +1,26 @@
-import { app, WebContentsView } from 'electron'
+import { app } from 'electron'
 import { electronApp } from '@electron-toolkit/utils'
-import { GlobalObject } from './global'
-import { createWindow, onMainBwReisze } from './window'
-import { appMountListener } from './app'
-import { mountIpcApi } from './service'
-import { config } from './config'
 
+import { GlobalObject } from './global/index'
+import { createWindow, onMainBwReisze } from './service/window'
+import { appMountListener } from './service/app'
+import { mountIpcApi } from './control'
+import { config } from './global/config'
 import { PrismaClient } from '@prisma/client'
-import { ViewManager } from './global/viewManager'
+import { initDb } from './db'
 
-console.log('app.getAppPath()', app.getAppPath())
-
-let arr = [
-  'home',
-  'appData',
-  'userData',
-  'sessionData',
-  'temp',
-  'exe',
-  'module',
-  'desktop',
-  'documents',
-  'downloads',
-  'music',
-  'pictures',
-  'videos',
-  'recent',
-  'logs',
-  'crashDumps'
-]
-
-arr.forEach((item: any) => {
-  console.log(item, app.getPath(item))
-})
+start()
 
 function start() {
   console.log(process.env)
 
-  // 初始化
+  // app初始化
   init()
-  // 应用挂载事件监听
-  appMountListener()
+
   // 应用准备初始化
   app.whenReady().then(() => {
-    // Set app user model id for windows
-    electronApp.setAppUserModelId('com.electron')
-
     // ipc初始化
     mountIpcApi()
-
     // 创建窗口
     GlobalObject.window = createWindow(config)
 
@@ -57,6 +29,11 @@ function start() {
   })
 }
 function init() {
+  console.log('init___env', import.meta.env)
+
+  // Set app user model id for windows
+  electronApp.setAppUserModelId('com.electron')
+
   // 初始化赋值数据库
   GlobalObject.db = new PrismaClient({
     // datasources: {
@@ -67,7 +44,35 @@ function init() {
   })
 
   // 初始化ViewMap
-  GlobalObject.viewManager ??= new ViewManager()
+  initDb()
+
+  // 应用挂载事件监听
+  appMountListener()
 }
 
-start()
+const getAppAllPah = () => {
+  let arr = [
+    'home',
+    'appData',
+    'userData',
+    'sessionData',
+    'temp',
+    'exe',
+    'module',
+    'desktop',
+    'documents',
+    'downloads',
+    'music',
+    'pictures',
+    'videos',
+    'recent',
+    'logs',
+    'crashDumps'
+  ]
+
+  arr.forEach((item: any) => {
+    console.log(item, app.getPath(item))
+  })
+}
+// app path
+getAppAllPah()
