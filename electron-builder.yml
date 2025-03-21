@@ -16,6 +16,7 @@ files:
   - '!prisma/**'
 asarUnpack:
   - node_modules/sqlite3
+  - '**/node_modules/prisma/**/*'
   - out/main/chunks/*.node
   - resources/**
 win:

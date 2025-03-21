@@ -35,6 +35,12 @@ export class ViewManager {
         })
         this.setViewBounds(view, { x: 50, y: 50 })
         view.webContents.loadURL(viewConfig.url)
+        view.webContents.on('did-fail-provisional-load', (...args) => {
+          if ((view.isFailLoadCount ??= 0) < 3) {
+            view.webContents.reload()
+            view.isFailLoadCount++
+          }
+        })
         GlobalObject.window?.contentView.addChildView(view)
         this.viewsMap.set(viewConfig.name, view)
       }
@@ -63,6 +69,7 @@ class ViewInfo extends WebContentsView {
     this.name = viewConfig.name
     this.url = viewConfig.url
   }
+  isFailLoadCount?: number
   name: string
   url: string
 }

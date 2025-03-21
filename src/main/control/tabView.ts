@@ -5,14 +5,11 @@ import { ViewConfig } from '../service/viewManager'
 export default class TabViewApi {
   createTabView() {
     ipcMain.on('createTabView', (_, arg: ViewConfig) => {
-      // 'https://www.facebook.com/messages/t/lanhai/'
       GlobalObject.viewManager?.addView(arg)
     })
   }
   showView() {
     ipcMain.on('showView', (_, arg: { name: string }) => {
-      // 'https://www.facebook.com/messages/t/lanhai/'
-
       let view = GlobalObject.viewManager?.getView(arg.name)!
       view ? GlobalObject.window?.contentView.addChildView(view) : console.log('null view')
     })
@@ -22,6 +19,17 @@ export default class TabViewApi {
       GlobalObject.viewManager?.viewsMap.forEach((view) => {
         GlobalObject.window?.contentView.removeChildView(view)
       })
+    })
+  }
+  deleteView() {
+    ipcMain.on('deleteView', (_, name: string) => {
+      const v = GlobalObject.viewManager?.getView(name)
+      if (v) {
+        GlobalObject.window?.contentView.removeChildView(v)
+        GlobalObject.viewManager?.deleteView(name)
+      } else {
+        // TODO 是否返回删除失败
+      }
     })
   }
 }
