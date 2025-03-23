@@ -1,7 +1,7 @@
 // import { execSync } from "child_process"
 
 import { spawn } from 'child_process'
-import { app } from 'electron'
+// import { app } from 'electron'
 import { resolve } from 'path'
 
 export const migrateDb = async () => {

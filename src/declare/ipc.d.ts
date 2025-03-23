@@ -1,6 +1,6 @@
-type requestBody<T> = {
-  eventName: T
-  params: any
+type requestBody = {
+  eventName: string
+  params?: any
 }
 
 type responseBody = {
@@ -9,7 +9,12 @@ type responseBody = {
   msg: string | undefined
 }
 
-// 过滤出类中的方法名
-type MethodNames<T> = {
-  [K in keyof T]: T[K] extends (...args: any[]) => any ? K : never
-}[keyof T]
+type ArgsType = requestBody | ((event: Electron.IpcRendererEvent, res: responseBody) => any)
+
+interface ApiClass {
+  onEventFunc: Record<string, (event: IpcMainEvent, params: any) => void>
+  invokeEventFunc: Record<
+    string,
+    (event: IpcMainInvokeEvent, params: any) => responseBody | (() => void)
+  >
+}

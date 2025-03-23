@@ -1,21 +1,21 @@
 <script setup lang="ts">
 import Versions from './components/Versions.vue'
-const ipcHandle2 = (): void => window.electron.ipcRenderer.send('TabViewApi:on', {
+const ipcHandle2 = ()=> window.IpcR('TabViewApi:send', {
   eventName: 'createTabView',
   params: {
     url: 'https://www.facebook.com/messages/t/lanhai/',
     name: "senlg-https://www.facebook.com/messages/t/lanhai/"
   }
 })
-const ipcHandle3 = () => {
-  window.electron.ipcRenderer.send('test', { a: "测试" })
-}
-const ipcHandle4 = () => {
-  window.electron.ipcRenderer.send('showView', { name: "senlg-https://www.facebook.com/messages/t/lanhai/" })
-}
-const ipcHandle5 = () => {
-  window.electron.ipcRenderer.send('showWindow')
-}
+// const ipcHandle3 = () => {
+//   window.electron.ipcRenderer.send('test', { a: "测试" })
+// }
+// const ipcHandle4 = () => {
+//   window.electron.ipcRenderer.send('showView', { name: "senlg-https://www.facebook.com/messages/t/lanhai/" })
+// }
+// const ipcHandle5 = () => {
+//   window.electron.ipcRenderer.send('showWindow')
+// }
 </script>
 <style lang="less" scoped>
 .appbar {
@@ -35,7 +35,7 @@ const ipcHandle5 = () => {
       <div class="action">
         <a target="_blank" rel="noreferrer" @click="ipcHandle2">Create View</a>
       </div>
-      <div class="action test-1">
+      <!-- <div class="action test-1">
         <a target="_blank" rel="noreferrer" @click="ipcHandle3">Test</a>
       </div>
       <div class="action test-1">
@@ -43,7 +43,7 @@ const ipcHandle5 = () => {
       </div>
       <div class="action test-1">
         <a target="_blank" rel="noreferrer" @click="ipcHandle5">showWindow</a>
-      </div>
+      </div> -->
     </div>
   </div>
   <img alt="logo" class="logo" src="./assets/electron.svg" />

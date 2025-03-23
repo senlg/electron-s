@@ -17,7 +17,9 @@ export function createWindow(config: myWindowConfig): BrowserWindow {
   })
 
   bw.on('ready-to-show', () => {
+    console.log(bw.isEnabled(), bw.webContents)
     bw.show()
+    
   })
 
   bw.webContents.setWindowOpenHandler((details) => {

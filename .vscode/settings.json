@@ -19,7 +19,6 @@
     "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb, bun.lock",
     "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata",
     "*.dart": "${capture}.g.dart",
-    "Cargo.toml": "Cargo.lock",
-    ""
+    "Cargo.toml": "Cargo.lock"
   }
 }
