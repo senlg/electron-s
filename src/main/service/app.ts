@@ -20,4 +20,8 @@ export const appMountListener = () => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
+
+  // 初始化
+  app.on('ready', () => {})
+  app.on('will-quit', () => {})
 }

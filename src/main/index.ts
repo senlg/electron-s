@@ -8,7 +8,7 @@ import { mountIpcApi } from './control'
 import { config } from './global/config'
 import { initDb } from './db'
 import { migrateDb } from './db/migrateDb'
-
+// app启动之前
 const beforeStart = async () => {
   try {
     // 运行prisma 迁移 看看是否更新了数据库结构
@@ -24,7 +24,7 @@ async function start() {
   const isStart = await beforeStart()
 
   if (isStart) {
-    console.log(process.env)
+    console.log(process)
     // app初始化
     init()
 

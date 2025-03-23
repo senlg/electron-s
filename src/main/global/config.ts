@@ -1,6 +1,7 @@
 import * as path from 'path'
 import icon from '@/../../resources/icon.png?asset'
-export const config: Electron.BrowserWindowConstructorOptions = {
+export type myWindowConfig = Electron.BrowserWindowConstructorOptions & Record<string, any>
+export const config: myWindowConfig = {
   width: 1366,
   height: 768,
   show: false,
@@ -12,5 +13,7 @@ export const config: Electron.BrowserWindowConstructorOptions = {
   webPreferences: {
     preload: path.join(__dirname, '../../preload/index.js'),
     sandbox: false
-  }
+  },
+  fullscreenable: false,
+  isF11: false
 }

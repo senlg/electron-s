@@ -2,10 +2,19 @@ import { is } from '@electron-toolkit/utils'
 import { BrowserWindow, shell } from 'electron'
 import * as path from 'path'
 import { GlobalObject } from '../global'
+import { myWindowConfig } from '../global/config'
 
-export function createWindow(config: Electron.BrowserWindowConstructorOptions): BrowserWindow {
+export function createWindow(config: myWindowConfig): BrowserWindow {
   // Create the browser window.
   const bw = new BrowserWindow(config)
+
+  // 监测鼠标输入事件
+  bw.webContents.addListener('before-input-event', (event, input) => {
+    if (input.key === 'F11' && !config.isF11) {
+      // 阻止默认行为，即阻止进入全屏模式
+      event.preventDefault()
+    }
+  })
 
   bw.on('ready-to-show', () => {
     bw.show()
