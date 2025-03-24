@@ -22,7 +22,6 @@ asarUnpack:
   - resources/**
 win:
   executableName: translater
-  target: nsis,
   # 包含符号文件
   extraResources:
     - from: ./path/to/symbols
