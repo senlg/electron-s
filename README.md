@@ -1,4 +1,4 @@
-# translater
+# electron-example
 
 An Electron application with Vue and TypeScript
 
