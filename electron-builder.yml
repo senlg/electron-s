@@ -1,5 +1,7 @@
 appId: com.electron.app
 productName: translater
+companyName: 我的公司
+copyright: Copyright © 2025 ${companyName}
 extraResources:
   - './prisma/**/*'
   - 'node_modules/.prisma/**/*'
@@ -21,6 +23,13 @@ asarUnpack:
   - resources/**
 win:
   executableName: translater
+  target: nsis,
+  # 包含符号文件
+  extraResources:
+    - from: ./path/to/symbols
+      to: symbols
+      filter:
+        - '*.pdb'
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

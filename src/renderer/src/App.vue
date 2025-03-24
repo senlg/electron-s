@@ -1,6 +1,14 @@
 <script setup lang="ts">
+import { TabViewApiSend } from './api'
 import Versions from './components/Versions.vue'
-const ipcHandle2 = () => window.IpcR('TabViewApi:send', {
+const ipcHandle2 = () => {
+  TabViewApiSend("createTabView", {
+    url: 'https://www.facebook.com/messages/t/lanhai/',
+    name: "senlg-https://www.facebook.com/messages/t/lanhai/"
+  })
+}
+
+window.IpcR('TabViewApi:send', {
   eventName: 'createTabView',
   params: {
     url: 'https://www.facebook.com/messages/t/lanhai/',

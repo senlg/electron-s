@@ -7,9 +7,11 @@ export default defineConfig({
   main: {
     plugins: [externalizeDepsPlugin()],
     envDir: './src/env',
+    base: '.',
     resolve: {
       alias: {
-        '@': resolve('./src/main')
+        '@': resolve('./src'),
+        '@main': resolve(__dirname, './src/main')
       }
     },
     build: {
@@ -34,7 +36,8 @@ export default defineConfig({
     envDir: './src/env',
     resolve: {
       alias: {
-        '@renderer': resolve('src/renderer/src')
+        '@renderer': resolve('src/renderer/src'),
+        '@': resolve('./src')
       }
     },
     plugins: [vue(), UnoCSS()]

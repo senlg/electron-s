@@ -1,14 +1,14 @@
 import { app, BrowserWindow } from 'electron'
-import { createWindow } from './window'
+import { createMainWindow } from './window'
 import { optimizer } from '@electron-toolkit/utils'
 import { GlobalObject } from '../global'
-import { config } from '../global/config'
+import { mainWindowConfig } from '../global/config'
 export const appMountListener = () => {
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) {
-      GlobalObject.window = createWindow(config)
+      GlobalObject.window = createMainWindow(mainWindowConfig)
     }
   })
   app.on('window-all-closed', () => {

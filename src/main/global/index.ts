@@ -8,5 +8,5 @@ export const GlobalObject: {
 } = {
   window: null,
   db: null,
-  viewManager: new ViewManager()
+  viewManager: null
 }

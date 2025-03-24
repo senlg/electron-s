@@ -12,7 +12,7 @@ type responseBody = {
 type ArgsType = requestBody | ((event: Electron.IpcRendererEvent, res: responseBody) => any)
 
 interface ApiClass {
-  onEventFunc: Record<string, (event: IpcMainEvent, params: any) => void>
+  sendEventFunc: Record<string, (event: IpcMainEvent, params: any) => void>
   invokeEventFunc: Record<
     string,
     (event: IpcMainInvokeEvent, params: any) => responseBody | (() => void)

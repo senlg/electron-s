@@ -1,12 +1,14 @@
 import { contextBridge } from 'electron'
 import { IpcR } from './customIpc'
+import { electronAPI } from '@electron-toolkit/preload'
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
 console.log(process.type, 'process.type')
 
 const ApiMap = new Map<string, any>([
-  ['process', process],
+  ['process', electronAPI.process],
+  ['crash', process],
   ['IpcR', IpcR]
 ])
 

@@ -3,7 +3,7 @@ import { ViewConfig } from '../service/viewManager'
 
 export default class TabViewApi implements ApiClass {
   invokeEventFunc = {}
-  onEventFunc = {
+  sendEventFunc = {
     createTabView(_, params: ViewConfig) {
       GlobalObject.viewManager?.addView(params)
     },
@@ -25,3 +25,5 @@ export default class TabViewApi implements ApiClass {
     }
   }
 }
+export type TabViewApiSendEventFuncKeys = keyof TabViewApi['sendEventFunc']
+export type TabViewApiInvokeEventFuncKeys = keyof TabViewApi['invokeEventFunc']

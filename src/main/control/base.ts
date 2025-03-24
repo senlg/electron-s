@@ -8,10 +8,10 @@ export class Api<T extends ApiClass> {
   on() {
     ipcMain.on(`${this.apiClass.constructor.name}:send`, (event, arg: requestBody) => {
       let { eventName, params = {} } = arg
-      if (this.apiClass.onEventFunc && this.apiClass.onEventFunc[eventName]) {
-        this.apiClass.onEventFunc[eventName](event, params)
+      if (this.apiClass.sendEventFunc && this.apiClass.sendEventFunc[eventName]) {
+        this.apiClass.sendEventFunc[eventName](event, params)
       } else {
-        console.error(`onEventFunc is null or eventName ${eventName} not found`)
+        console.error(`sendEventFunc is null or eventName ${eventName} not found`)
       }
     })
   }
