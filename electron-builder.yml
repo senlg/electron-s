@@ -1,7 +1,6 @@
 appId: com.electron.app
 productName: translater
-companyName: 我的公司
-copyright: Copyright © 2025 ${companyName}
+copyright: Copyright © 2025 companyName
 extraResources:
   - './prisma/**/*'
   - 'node_modules/.prisma/**/*'

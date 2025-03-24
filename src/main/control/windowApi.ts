@@ -2,7 +2,7 @@ import { GlobalObject } from '../global'
 
 export default class WindowApi implements ApiClass {
   invokeEventFunc = {}
-  onEventFunc = {
+  sendEventFunc = {
     // closeMainWindow() {
     //   GlobalObject.window?.close()
     // },
