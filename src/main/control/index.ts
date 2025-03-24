@@ -11,5 +11,3 @@ export function mountIpcApi() {
     api.invoke()
   })
 }
-
-// export type { TabViewApiOnEventFuncKeys } from './tabViewApi'

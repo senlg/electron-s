@@ -25,6 +25,3 @@ export default class TabViewApi implements ApiClass {
     }
   }
 }
-
-// 提取 onEventFunc 对象的属性键名成联合类型
-// export type TabViewApiOnEventFuncKeys = keyof TabViewApi['onEventFunc']

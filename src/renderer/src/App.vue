@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Versions from './components/Versions.vue'
-const ipcHandle2 = ()=> window.IpcR('TabViewApi:send', {
+const ipcHandle2 = () => window.IpcR('TabViewApi:send', {
   eventName: 'createTabView',
   params: {
     url: 'https://www.facebook.com/messages/t/lanhai/',
@@ -19,10 +19,10 @@ const ipcHandle2 = ()=> window.IpcR('TabViewApi:send', {
 </script>
 <style lang="less" scoped>
 .appbar {
-  app-region: drag;
+  -webkit-app-region: drag;
 
   .action {
-    app-region: no-drag;
+    -webkit-app-region: no-drag;
   }
 }
 </style>
