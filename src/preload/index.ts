@@ -8,7 +8,6 @@ console.log(process.type, 'process.type')
 
 const ApiMap = new Map<string, any>([
   ['process', electronAPI.process],
-  ['crash', process],
   ['IpcR', IpcR]
 ])
 

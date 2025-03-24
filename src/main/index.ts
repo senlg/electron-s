@@ -10,6 +10,8 @@ import { initDb } from './db'
 import { migrateDb } from './db/migrateDb'
 import { ViewManager } from './service/viewManager'
 import { initCrashReporter } from './service/crashReporter'
+console.log('vite env', import.meta.env, '\n')
+
 // app启动之前的操作
 const beforeStart = async () => {
   try {
