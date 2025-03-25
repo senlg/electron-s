@@ -20,7 +20,7 @@ export function createMainWindow(config: myWindowConfig): BrowserWindow {
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     bw.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
-    bw.loadFile(path.join(__dirname, '../renderer/index.html'))
+    bw.loadFile(path.join(__dirname, '../../renderer/index.html'))
   }
   return bw
 }

@@ -13,7 +13,7 @@ export const initDb = () => {
     ? new PrismaClient({
         datasources: {
           db: {
-            url: dbPath
+            url: `file:${dbPath}`
           }
         }
       })

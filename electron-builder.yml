@@ -16,10 +16,7 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
   - '!prisma/**'
 asarUnpack:
-  - node_modules/sqlite3
   - '**/node_modules/prisma/**/*'
-  - out/main/chunks/*.node
-  - resources/**
 win:
   executableName: translater
   # 包含符号文件
@@ -33,6 +30,10 @@ nsis:
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: true
+  runAfterFinish: false
+  oneClick: false
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:

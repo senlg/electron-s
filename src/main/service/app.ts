@@ -23,5 +23,7 @@ export const appMountListener = () => {
 
   // 初始化
   app.on('ready', () => {})
-  app.on('will-quit', () => {})
+  app.on('will-quit', () => {
+    GlobalObject.db?.$disconnect()
+  })
 }
