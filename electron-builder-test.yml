@@ -1,12 +1,13 @@
 appId: com.electron.app
 productName: translater
 copyright: Copyright © 2025 companyName
+compression: store
 extraResources:
   - './prisma/**/*'
   - 'node_modules/.prisma/**/*'
   - 'node_modules/@prisma/client/**/*'
   - 'node_modules/@prisma/engines/**/*'
-  - '**/node_modules/prisma/**/*'
+  - 'node_modules/prisma/**/*'
 directories:
   buildResources: build
 files:

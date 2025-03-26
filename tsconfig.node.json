@@ -7,7 +7,7 @@
     "baseUrl": ".",
     "paths": {
       "@main/*": ["./src/main/*"],
-      "@/": ["./src/"]
+      "@/*": ["src/*"]
     }
     //  "esModuleInterop": true,  
     //  "allowSyntheticDefaultImports": true,

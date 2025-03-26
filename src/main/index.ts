@@ -10,7 +10,6 @@ import { initDb } from './db'
 import { migrateDb } from './db/migrateDb'
 import { ViewManager } from './service/viewManager'
 import { initCrashReporter } from './service/crashReporter'
-console.log('vite env', import.meta.env, '\n')
 
 // app启动之前的操作
 const beforeStart = async () => {
@@ -28,9 +27,9 @@ async function main() {
   const isStart = await beforeStart()
   if (isStart) {
     // 应用准备进行窗口的创建
-    app.whenReady().then(() => {
+    app.whenReady().then(async () => {
       // app初始化
-      init()
+      await init()
       // ipc初始化
       mountIpcApi()
       // 创建窗口
@@ -40,7 +39,7 @@ async function main() {
 }
 
 // 初始化函数
-function init() {
+async function init() {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
   // 启动崩溃日志收集
@@ -48,20 +47,25 @@ function init() {
   // 应用挂载事件监听
   appMountListener()
   // 初始化赋值数据库
-  initDb()
+  try {
+    await initDb()
+  } catch (error) {
+    console.log('error:###\n %s ####\n', error)
+  }
+
   // 初始化全局view管理对象
   GlobalObject.viewManager = new ViewManager()
 
-  // GlobalObject.db?.user
-  //   .findUnique({
-  //     select: { email: true },
-  //     where: {
-  //       email: 'alice@prisma.io'
-  //     }
-  //   })
-  //   .then((res) => {
-  //     console.log(res)
-  //   })
+  GlobalObject.db?.user
+    .findUnique({
+      select: { email: true },
+      where: {
+        email: 'alice@prisma.io'
+      }
+    })
+    .then((res) => {
+      console.log(res)
+    })
 }
 
 // 打印路径

@@ -19,6 +19,7 @@
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
+    "build:win-test": "npm run build && electron-builder -c electron-builder-test.yml --win",
     "build:mac": "npm run build && electron-builder --mac",
     "build:linux": "npm run build && electron-builder --linux"
   },
@@ -28,8 +29,7 @@
     "@prisma/client": "^6.5.0",
     "axios": "^1.8.2",
     "electron-updater": "^6.3.9",
-    "less": "^4.2.2",
-    "prisma": "^6.5.0"
+    "less": "^4.2.2"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "3.0.0",
@@ -47,6 +47,7 @@
     "unocss": "^66.1.0-beta.3",
     "vite": "^6.1.0",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.2"
+    "vue-tsc": "^2.2.2",
+    "prisma": "^6.5.0"
   }
 }

@@ -16,6 +16,9 @@ export default defineConfig({
         '@main': resolve(__dirname, './src/main')
       }
     },
+    esbuild: {
+      drop: ['debugger']
+    },
     build: {
       rollupOptions: {
         input: {

@@ -1,4 +1,5 @@
 import * as path from 'path'
+import { app } from 'electron'
 import icon from '@/../resources/icon.png?asset'
 export type myWindowConfig = Electron.BrowserWindowConstructorOptions & Record<string, any>
 export const mainWindowConfig: myWindowConfig = {
@@ -22,5 +23,6 @@ export const config = {
   APP_NAME: import.meta.env.VITE_APP_NAME,
   COMPANY_NAME: import.meta.env.VITE_COMPANY_NAME,
   isUploadCrashReportToServer: false,
-  CrashReportURL: ''
+  CrashReportURL: '',
+  DATABASE_URL: app.isPackaged ? path.resolve(app.getPath('userData'), './db', './prisma.db') : ''
 }
