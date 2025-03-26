@@ -1,8 +1,8 @@
 import { app } from 'electron'
-import { GlobalObject } from '../global'
+// import { GlobalObject } from '../global'
 import path from 'path'
 import fs from 'fs/promises'
-import { PrismaClient } from '@prisma/client'
+// import { PrismaClient } from '@prisma/client'
 
 import { verifyExists } from '@/utils/mainUtils'
 import { config } from '@main/global/config'
@@ -23,17 +23,17 @@ export const initDb = async () => {
 
   console.log(`\nfile:${dbPath}\n`)
 
-  // 初始化数据库客户端
-  GlobalObject.db = dbPath
-    ? new PrismaClient({
-        datasources: {
-          db: {
-            url: `file:${dbPath}`
-          }
-        }
-      })
-    : new PrismaClient()
+  // // 初始化数据库客户端
+  // GlobalObject.db = dbPath
+  //   ? new PrismaClient({
+  //       datasources: {
+  //         db: {
+  //           url: `file:${dbPath}`
+  //         }
+  //       }
+  //     })
+  //   : new PrismaClient()
 
-  // 连接数据库
-  GlobalObject.db.$connect()
+  // // 连接数据库
+  // GlobalObject.db.$connect()
 }

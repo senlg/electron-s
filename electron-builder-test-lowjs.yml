@@ -1,11 +1,13 @@
 appId: com.electron.app
 productName: translater
 copyright: Copyright © 2025 companyName
+compression: store
 extraResources:
-  - './prisma/**/*'
-  - 'node_modules/.prisma/**/*'
-  - 'node_modules/@prisma/**/*
-  - 'node_modules/prisma/**/*'
+  # - './prisma/**/*'
+  # - 'node_modules/.prisma/**/*'
+  # - 'node_modules/@prisma/**/*'
+  # - 'node_modules/prisma/**/*'
+includePdb: true
 directories:
   buildResources: build
 files:
@@ -16,6 +18,7 @@ files:
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
   - '!prisma/**'
+  - '!eslint.config.mjs'
 win:
   executableName: translater
   # # 包含符号文件

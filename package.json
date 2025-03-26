@@ -19,22 +19,23 @@
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
-    "build:win-test": "npm run build && electron-builder -c electron-builder-test.yml --win",
+    "build:win-test-prisma": "npm run build && electron-builder -c electron-builder-test-prisma.yml --win",
+    "build:win-test-lowjs": "npm run build && electron-builder -c electron-builder-test-lowjs.yml --win",
     "build:mac": "npm run build && electron-builder --mac",
     "build:linux": "npm run build && electron-builder --linux"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
-    "@prisma/client": "^6.5.0",
     "axios": "^1.8.2",
     "electron-updater": "^6.3.9",
-    "less": "^4.2.2"
+    "lowdb": "^7.0.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "3.0.0",
     "@electron-toolkit/eslint-config-ts": "^3.0.0",
     "@electron-toolkit/tsconfig": "^1.0.1",
+    "@prisma/client": "^6.5.0",
     "@types/node": "^22.13.4",
     "@vitejs/plugin-vue": "^5.2.1",
     "electron": "^34.2.0",
@@ -42,12 +43,13 @@
     "electron-vite": "^3.0.0",
     "eslint": "^9.20.1",
     "eslint-plugin-vue": "^9.32.0",
+    "less": "^4.2.2",
     "prettier": "^3.5.1",
+    "prisma": "^6.5.0",
     "typescript": "^5.7.3",
     "unocss": "^66.1.0-beta.3",
     "vite": "^6.1.0",
     "vue": "^3.5.13",
-    "vue-tsc": "^2.2.2",
-    "prisma": "^6.5.0"
+    "vue-tsc": "^2.2.2"
   }
 }
