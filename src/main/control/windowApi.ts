@@ -1,26 +1,32 @@
-import { GlobalObject } from '../global'
+import { IpcMainInvokeEvent } from 'electron'
+import { GlobalObj } from '../global'
 
 export default class WindowApi implements ApiClass {
-  invokeEventFunc = {}
+  invokeEventFunc = {
+    test: (_event: IpcMainInvokeEvent, params: any) => ({
+      code: 1,
+      data: params
+    })
+  }
   sendEventFunc = {
     // closeMainWindow() {
-    //   GlobalObject.window?.close()
+    //   GlobalObj.window?.close()
     // },
 
     hideWindow() {
-      GlobalObject.window?.hide()
+      GlobalObj.window?.hide()
     },
 
     showMainWindow() {
-      GlobalObject.window?.show()
+      GlobalObj.window?.show()
     },
 
     miniWindow() {
-      GlobalObject.window?.minimize()
+      GlobalObj.window?.minimize()
     },
 
     maxWindow() {
-      GlobalObject.window?.maximize()
+      GlobalObj.window?.isMaximized() ? GlobalObj.window.unmaximize() : GlobalObj.window?.maximize()
     }
   }
 }

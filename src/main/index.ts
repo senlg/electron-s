@@ -1,7 +1,7 @@
 import { app } from 'electron'
 import { electronApp } from '@electron-toolkit/utils'
 
-import { GlobalObject } from './global/index'
+import { GlobalObj } from './global/index'
 import { createMainWindow } from './service/window'
 import { appMountListener } from './service/app'
 import { mountIpcApi } from './control'
@@ -10,6 +10,7 @@ import { initDb } from './db'
 import { migrateDb } from './db/migrateDb'
 import { ViewManager } from './service/viewManager'
 import { initCrashReporter } from './service/crashReporter'
+import { initTray } from './service/tray'
 
 // app启动之前的操作
 const beforeStart = async () => {
@@ -33,7 +34,7 @@ async function main() {
       // ipc初始化
       mountIpcApi()
       // 创建窗口
-      GlobalObject.window = createMainWindow(mainWindowConfig)
+      GlobalObj.window = createMainWindow(mainWindowConfig)
     })
   }
 }
@@ -44,28 +45,14 @@ async function init() {
   electronApp.setAppUserModelId('com.electron')
   // 启动崩溃日志收集
   initCrashReporter()
+  // 创建系统托盘
+  initTray()
   // 应用挂载事件监听
   appMountListener()
-  // 初始化赋值数据库
-  try {
-    await initDb()
-  } catch (error) {
-    console.log('error:###\n %s ####\n', error)
-  }
-
   // 初始化全局view管理对象
-  GlobalObject.viewManager = new ViewManager()
-
-  GlobalObject.db?.user
-    .findUnique({
-      select: { email: true },
-      where: {
-        email: 'alice@prisma.io'
-      }
-    })
-    .then((res) => {
-      console.log(res)
-    })
+  GlobalObj.viewManager = new ViewManager()
+  // 初始化赋值数据库
+  await initDb()
 }
 
 // 打印路径

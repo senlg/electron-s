@@ -1,5 +1,5 @@
 import { BrowserWindow, WebContentsView, WebContentsViewConstructorOptions } from 'electron'
-import { GlobalObject } from '../global'
+import { GlobalObj } from '../global'
 import path from 'path'
 
 export class ViewManager {
@@ -12,7 +12,7 @@ export class ViewManager {
   setViewBounds(
     view: ViewInfo,
     { x, y }: { x: number; y: number },
-    bw: BrowserWindow = GlobalObject.window!
+    bw: BrowserWindow = GlobalObj.window!
   ) {
     const bwBounds = bw.getBounds()
     view.setBounds({
@@ -41,7 +41,7 @@ export class ViewManager {
             view.isFailLoadCount++
           }
         })
-        GlobalObject.window?.contentView.addChildView(view)
+        GlobalObj.window?.contentView.addChildView(view)
         this.viewsMap.set(viewConfig.name, view)
       }
       return true

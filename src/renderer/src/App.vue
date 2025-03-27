@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TabViewApiSend } from './api'
+import { TabViewApiSend, WindowApiSend } from './api'
 import Versions from './components/Versions.vue'
 const ipcHandle2 = () => {
   TabViewApiSend("createTabView", {
@@ -7,15 +7,18 @@ const ipcHandle2 = () => {
     name: "senlg-https://www.facebook.com/messages/t/lanhai/"
   })
 }
-// const ipcHandle3 = () => {
-//   window.electron.ipcRenderer.send('test', { a: "测试" })
-// }
-// const ipcHandle4 = () => {
-//   window.electron.ipcRenderer.send('showView', { name: "senlg-https://www.facebook.com/messages/t/lanhai/" })
-// }
-// const ipcHandle5 = () => {
-//   window.electron.ipcRenderer.send('showWindow')
-// }
+const ipcHandle3 = () => {
+  WindowApiSend("maxWindow",)
+}
+const ipcHandle4 = () => {
+  WindowApiSend("showMainWindow")
+}
+const ipcHandle5 = () => {
+  WindowApiSend('hideWindow')
+}
+const ipcHandle6 = () => {
+  WindowApiSend('miniWindow')
+}
 </script>
 <style lang="less" scoped>
 .appbar {
@@ -35,15 +38,18 @@ const ipcHandle2 = () => {
       <div class="action">
         <a target="_blank" rel="noreferrer" @click="ipcHandle2">Create View</a>
       </div>
-      <!-- <div class="action test-1">
-        <a target="_blank" rel="noreferrer" @click="ipcHandle3">Test</a>
+      <div class="action test-1">
+        <a target="_blank" rel="noreferrer" @click="ipcHandle3">放大window</a>
       </div>
       <div class="action test-1">
-        <a target="_blank" rel="noreferrer" @click="ipcHandle4">showView</a>
+        <a target="_blank" rel="noreferrer" @click="ipcHandle4">显示window</a>
       </div>
       <div class="action test-1">
-        <a target="_blank" rel="noreferrer" @click="ipcHandle5">showWindow</a>
-      </div> -->
+        <a target="_blank" rel="noreferrer" @click="ipcHandle5">隐藏window</a>
+      </div>
+      <div class="action test-1">
+        <a target="_blank" rel="noreferrer" @click="ipcHandle6">缩小window</a>
+      </div>
     </div>
   </div>
   <img alt="logo" class="logo" src="./assets/electron.svg" />

@@ -1,7 +1,7 @@
 import { electronAPI } from '@electron-toolkit/preload'
 import { ipcRenderer } from 'electron/renderer'
 
-export const IpcR = (channel: string, arg: ArgsType): void | Promise<responseBody> => {
+export const IpcR = (channel: string, arg?: ArgsType): void | Promise<responseBody> => {
   const [, type] = channel.split(':')
   switch (type) {
     case 'send':

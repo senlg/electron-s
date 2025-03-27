@@ -1,7 +1,7 @@
 import { is } from '@electron-toolkit/utils'
 import { BrowserWindow, shell } from 'electron'
 import * as path from 'path'
-import { GlobalObject } from '../global'
+import { GlobalObj } from '../global'
 import { myWindowConfig } from '../global/config'
 
 export function createMainWindow(config: myWindowConfig): BrowserWindow {
@@ -33,7 +33,7 @@ const setWebContentsHandler = (bw: BrowserWindow, c: myWindowConfig) => {
     }
   })
   bw.webContents.on('did-fail-load', (event: Electron.Event) => {
-    console.log(event, '\n')
+    console.log('did-fail-load', event, '\n')
   })
   bw.webContents.on('render-process-gone', (_event, details) => {
     console.log('render-process-gone reason:', details.reason)
@@ -46,8 +46,8 @@ const setWebContentsHandler = (bw: BrowserWindow, c: myWindowConfig) => {
 
 const onMainBwReisze = (bw: BrowserWindow) => {
   bw.on('resize', () => {
-    GlobalObject.viewManager?.viewsMap.forEach((view) => {
-      GlobalObject.viewManager?.setViewBounds(view, { x: 50, y: 50 }, bw)
+    GlobalObj.viewManager?.viewsMap.forEach((view) => {
+      GlobalObj.viewManager?.setViewBounds(view, { x: 50, y: 50 }, bw)
     })
   })
 }

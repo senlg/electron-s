@@ -18,7 +18,7 @@ export const migrateDb = async () => {
   //       stdio: 'pipe',
   //       env: {
   //         ...process.env,
-  //         DATABASE_URL: config.DATABASE_URL
+  //         PRISMA_DATABASE_URL: config.PRISMA_DATABASE_URL
   //       }
   //     }
   //   )

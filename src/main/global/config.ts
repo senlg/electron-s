@@ -1,6 +1,6 @@
 import * as path from 'path'
 import { app } from 'electron'
-import icon from '@/../resources/icon.png?asset'
+import logo from '@/../resources/icon.png?asset'
 export type myWindowConfig = Electron.BrowserWindowConstructorOptions & Record<string, any>
 export const mainWindowConfig: myWindowConfig = {
   width: 1366,
@@ -9,7 +9,7 @@ export const mainWindowConfig: myWindowConfig = {
   autoHideMenuBar: true,
   frame: false,
   transparent: true,
-  icon,
+  logo,
   title: import.meta.env.VITE_APP_TITLE,
   webPreferences: {
     preload: path.join(__dirname, '../../preload/index.js'),
@@ -24,5 +24,7 @@ export const config = {
   COMPANY_NAME: import.meta.env.VITE_COMPANY_NAME,
   isUploadCrashReportToServer: false,
   CrashReportURL: '',
-  DATABASE_URL: app.isPackaged ? path.resolve(app.getPath('userData'), './db', './prisma.db') : ''
+  PRISMA_DATABASE_URL: app.isPackaged
+    ? path.resolve(app.getPath('userData'), './db', './prisma.db')
+    : ''
 }

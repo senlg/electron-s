@@ -6,7 +6,6 @@ export default defineConfig({
     [
       /^test-(\d+)$/,
       (match) => {
-        console.log(match)
         return { margin: `${Number(match[1])}px` }
       }
     ]
