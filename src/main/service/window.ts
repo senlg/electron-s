@@ -12,6 +12,17 @@ export function createMainWindow(config: myWindowConfig): BrowserWindow {
   setWebContentsHandler(bw, config)
   // 监听window事件
   onMainBwReisze(bw)
+  // 设置鼠标菜单事件
+  if (process.platform === 'win32') {
+    bw.hookWindowMessage(278, () => {
+      bw.setEnabled(false)
+      setTimeout(() => {
+        bw.setEnabled(true)
+      })
+
+      return true
+    })
+  }
   bw.on('ready-to-show', () => {
     bw.show()
   })

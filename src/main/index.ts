@@ -25,6 +25,8 @@ const beforeStart = async () => {
 
 main()
 async function main() {
+  console.log('func string: %s', beforeStart.toString())
+
   const isStart = await beforeStart()
   if (isStart) {
     // 应用准备进行窗口的创建
