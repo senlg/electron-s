@@ -1,54 +1,92 @@
 import { resolve } from 'path'
-import { defineConfig, externalizeDepsPlugin } from 'electron-vite'
+import {
+  bytecodePlugin,
+  defineConfig,
+  ElectronViteConfig,
+  externalizeDepsPlugin,
+  loadEnv
+  // bytecodePlugin
+} from 'electron-vite'
 // 渲染端插件
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import path from 'path'
 import fs from 'fs'
-export default defineConfig({
-  main: {
-    plugins: [externalizeDepsPlugin()],
-    envDir: './src/env',
-    base: '.',
-    resolve: {
-      alias: {
-        '@': resolve('./src'),
-        '@main': resolve(__dirname, './src/main')
-      }
-    },
-    esbuild: {
-      drop: ['debugger']
-    },
-    build: {
-      rollupOptions: {
-        input: {
-          index: resolve(__dirname, 'src/main/index.ts'),
-          'utlis/index': resolve(__dirname, 'src/utils/index.ts'),
-          // 'childProcess/child': resolve(__dirname, 'src/main/childProcess/child.ts'),
-          ...getChildProcessEntries()
-        },
 
-        output: {
-          preserveModules: true,
-          preserveModulesRoot: 'src/main'
+export default defineConfig(({ command, mode }): ElectronViteConfig => {
+  const envDir = './src/env'
+  const env = loadEnv(mode, envDir)
+  console.log(env, mode)
+  const config: any & ElectronViteConfig = {
+    main: {
+      plugins: [],
+      envDir,
+      resolve: {
+        alias: {
+          '@': resolve('./src'),
+          '@main': resolve(__dirname, './src/main')
+        }
+      },
+      esbuild: {
+        drop: ['debugger']
+      },
+      build: {
+        rollupOptions: {
+          input: {
+            index: resolve(__dirname, 'src/main/index.ts'),
+            'utlis/index': resolve(__dirname, 'src/utils/index.ts'),
+            // 'childProcess/child': resolve(__dirname, 'src/main/childProcess/child.ts'),
+            ...getChildProcessEntries()
+          }
         }
       }
-    }
-  },
-  preload: {
-    envDir: './src/env',
-    plugins: [externalizeDepsPlugin()]
-  },
-  renderer: {
-    envDir: './src/env',
-    resolve: {
-      alias: {
-        '@renderer': resolve('src/renderer/src'),
-        '@': resolve('./src')
-      }
     },
-    plugins: [vue(), UnoCSS()]
+    preload: {
+      envDir,
+      plugins: []
+    },
+    renderer: {
+      envDir,
+      resolve: {
+        alias: {
+          '@renderer': resolve('src/renderer/src'),
+          '@': resolve('./src')
+        }
+      },
+
+      plugins: [vue(), UnoCSS()]
+    }
   }
+  const a1 = ['main', 'preload']
+  const a2 = ['main', 'preload', 'renderer']
+  if (command === 'build') {
+    a1.forEach(function (key) {
+      config[key].plugins.push(bytecodePlugin(), externalizeDepsPlugin())
+    })
+
+    a2.forEach(function (key) {
+      if (config[key].build) {
+        config[key].build.minify = true
+      } else {
+        config[key].build = {
+          minify: true
+        }
+      }
+    })
+  } else if (command === 'serve') {
+    a2.forEach(function (key) {
+      if (config[key].build) {
+        config[key].build.sourcemap = true
+      } else {
+        config[key].build = {
+          sourcemap: true
+        }
+      }
+    })
+  }
+  console.log(config)
+
+  return config
 })
 
 function getChildProcessEntries() {
@@ -56,8 +94,6 @@ function getChildProcessEntries() {
   const entries = {}
   for (const p of extraFiles) {
     const entryName = `childProcess/${path.basename(p).replace(/\.ts/, '')}`
-    console.log(entryName)
-
     entries[entryName] = p
   }
   ;``

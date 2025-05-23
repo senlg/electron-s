@@ -1,20 +1,15 @@
 @import './base.css';
 
-body {
-  /* overflow: hidden; */
-  user-select: none;
-  background-color: #d4502f00;
-}
-
 #app {
-  border-radius: 20px;
-  border: #1a1a1a solid 1px;
+  border-radius: 5px;
+  padding: 10px;
+  border: #484848 solid 1px;
   overflow: hidden;
   height: 100vh;
   background-image: url('./wavy-lines.svg');
   background-size: cover;
   width: 100vw;
-  background-color: rgb(83, 82, 82);
+  background-color: rgb(0, 0, 0);
 }
 
 code {
@@ -33,13 +28,6 @@ code {
   font-size: 85%;
 }
 
-#app {
-  /* display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column; */
-  /* margin-bottom: 80px; */
-}
 
 .logo {
   margin-bottom: 8px;

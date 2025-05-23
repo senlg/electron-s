@@ -42,11 +42,18 @@
 ul {
   list-style: none;
 }
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
 
 body {
-  min-height: 100vh;
+  user-select: none;
+  background-color: #d4502f00;
+  height: 100vh;
   color: var(--color-text);
-  background: var(--color-background);
+  /* background: var(--color-background); */
   line-height: 1.6;
   font-family:
     Inter,

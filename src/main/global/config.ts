@@ -1,6 +1,6 @@
 import * as path from 'path'
 import { app } from 'electron'
-import logo from '@/../resources/icon.png?asset'
+import logo from '@/../resources/icons/icon.png'
 export type myWindowConfig = Electron.BrowserWindowConstructorOptions & Record<string, any>
 export const mainWindowConfig: myWindowConfig = {
   width: 1366,
@@ -12,7 +12,7 @@ export const mainWindowConfig: myWindowConfig = {
   logo,
   title: import.meta.env.VITE_APP_TITLE,
   webPreferences: {
-    preload: path.join(__dirname, '../../preload/index.js'),
+    preload: path.join(__dirname, '../preload/index.js'),
     sandbox: false
   },
   fullscreenable: false,

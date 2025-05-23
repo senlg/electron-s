@@ -29,10 +29,11 @@ export class ViewManager {
         view = new ViewInfo({
           ...viewConfig,
           webPreferences: {
-            preload: path.join(__dirname, '../../preload/index.js'),
+            preload: path.join(__dirname, '../preload/index.js'),
             sandbox: false
           }
         })
+        view.webContents.openDevTools()
         this.setViewBounds(view, { x: 50, y: 50 })
         view.webContents.loadURL(viewConfig.url)
         view.webContents.on('did-fail-provisional-load', () => {

@@ -1,5 +1,5 @@
 import { is } from '@electron-toolkit/utils'
-import { BrowserWindow, shell } from 'electron'
+import { app, BrowserWindow, shell } from 'electron'
 import * as path from 'path'
 import { GlobalObj } from '../global'
 import { myWindowConfig } from '../global/config'
@@ -13,16 +13,7 @@ export function createMainWindow(config: myWindowConfig): BrowserWindow {
   // 监听window事件
   onMainBwReisze(bw)
   // 设置鼠标菜单事件
-  if (process.platform === 'win32') {
-    bw.hookWindowMessage(278, () => {
-      bw.setEnabled(false)
-      setTimeout(() => {
-        bw.setEnabled(true)
-      })
-
-      return true
-    })
-  }
+  cancelMouseMenu(bw)
   bw.on('ready-to-show', () => {
     bw.show()
   })
@@ -31,7 +22,11 @@ export function createMainWindow(config: myWindowConfig): BrowserWindow {
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     bw.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
-    bw.loadFile(path.join(__dirname, '../../renderer/index.html'))
+    console.log(path.join(__dirname))
+
+    console.log(path.join(app.getPath('exe'), '../resources/renderer.asar/index.html'))
+
+    bw.loadFile(path.join(app.getPath('exe'), '../resources/renderer.asar/index.html'))
   }
   return bw
 }
@@ -62,3 +57,17 @@ const onMainBwReisze = (bw: BrowserWindow) => {
     })
   })
 }
+
+const cancelMouseMenu = (bw: BrowserWindow) => {
+  if (process.platform === 'win32') {
+    bw.hookWindowMessage(278, () => {
+      bw.setEnabled(false)
+      setTimeout(() => {
+        bw.setEnabled(true)
+      })
+
+      return true
+    })
+  }
+}
+

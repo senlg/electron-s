@@ -22,25 +22,6 @@ const beforeStart = async () => {
     return false
   }
 }
-
-main()
-async function main() {
-  console.log('func string: %s', beforeStart.toString())
-
-  const isStart = await beforeStart()
-  if (isStart) {
-    // 应用准备进行窗口的创建
-    app.whenReady().then(async () => {
-      // app初始化
-      await init()
-      // ipc初始化
-      mountIpcApi()
-      // 创建窗口
-      GlobalObj.window = createMainWindow(mainWindowConfig)
-    })
-  }
-}
-
 // 初始化函数
 async function init() {
   // Set app user model id for windows
@@ -56,6 +37,26 @@ async function init() {
   // 初始化赋值数据库
   await initDb()
 }
+main()
+async function main() {
+  console.log('func string: %s', beforeStart.toString())
+
+  const isStart = await beforeStart()
+  if (isStart) {
+    // 应用准备进行窗口的创建
+    app.whenReady().then(async () => {
+      // app初始化
+      await init()
+      // ipc初始化
+      mountIpcApi()
+      // 创建窗口
+      GlobalObj.window = createMainWindow(mainWindowConfig)
+      GlobalObj.window.webContents.openDevTools()
+    })
+  }
+}
+
+
 
 // 打印路径
 ;(() => {

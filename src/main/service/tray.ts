@@ -1,7 +1,7 @@
 import { GlobalObj } from '@main/global'
 import { Menu, MenuItem, nativeImage, Tray } from 'electron'
-import logo from '@/../resources/icon.ico?asset'
-import icon2 from '@/../resources/icon.png?asset'
+import logo from '@/../resources/icons/icon.ico'
+import icon2 from '@/../resources/icons/icon.png'
 import { config } from '@main/global/config'
 
 export const initTray = () => {

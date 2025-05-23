@@ -3,10 +3,12 @@ import { GlobalObj } from '../global'
 
 export default class WindowApi implements ApiClass {
   invokeEventFunc = {
-    test: (_event: IpcMainInvokeEvent, params: any) => ({
-      code: 1,
-      data: params
-    })
+    test: function (_event: IpcMainInvokeEvent, params: any) {
+      return {
+        code: 1,
+        data: params
+      }
+    }
   }
   sendEventFunc = {
     // closeMainWindow() {
@@ -26,6 +28,8 @@ export default class WindowApi implements ApiClass {
     },
 
     maxWindow() {
+      console.log('max window')
+
       GlobalObj.window?.isMaximized() ? GlobalObj.window.unmaximize() : GlobalObj.window?.maximize()
     }
   }
