@@ -29,8 +29,10 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
     "axios": "^1.8.2",
+    "bufferutil": "^4.0.9",
     "electron-updater": "^6.3.9",
-    "lowdb": "^7.0.1"
+    "puppeteer": "^24.9.0",
+    "utf-8-validate": "^6.0.5"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "3.0.0",
@@ -42,12 +44,16 @@
     "asar": "^3.2.0",
     "electron": "^34.2.0",
     "electron-builder": "^25.1.8",
+    "electron-rebuild": "^3.2.9",
     "electron-vite": "^3.0.0",
     "eslint": "^9.20.1",
     "eslint-plugin-vue": "^9.32.0",
     "less": "^4.2.2",
+    "lowdb": "^7.0.1",
     "prettier": "^3.5.1",
     "prisma": "^6.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "typescript": "^5.7.3",
     "unocss": "^66.1.0-beta.3",
     "vite": "^6.1.0",

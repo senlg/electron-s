@@ -1,19 +1,22 @@
 import { GlobalObj } from '@main/global'
 import { Menu, MenuItem, nativeImage, Tray } from 'electron'
-import logo from '@/../resources/icons/icon.ico'
-import icon2 from '@/../resources/icons/icon.png'
+import logoIco from '@/../resources/icons/icon.ico'
+import logoPng from '@/../resources/icons/icon.png'
 import { config } from '@main/global/config'
+import path from 'path'
 
 export const initTray = () => {
-  let icon = nativeImage.createFromPath(logo)
-  let i = nativeImage.createFromPath(icon2).resize({ width: 16, height: 16 })
-  GlobalObj.tray = new Tray(icon)
+  let iconIco = nativeImage.createFromPath(path.resolve(__dirname + logoIco))
+  GlobalObj.tray = new Tray(iconIco)
+
+  let iconPng = nativeImage
+    .createFromPath(path.resolve(__dirname + logoPng))
+    .resize({ width: 18, height: 18 })
   // 设置托盘
   setTray(GlobalObj.tray)
-
   let menu: (MenuItem | Electron.MenuItemConstructorOptions)[] = [
     {
-      icon: i,
+      icon: iconPng,
       label: '测试'
     }
   ]
@@ -23,7 +26,7 @@ export const initTray = () => {
 
 const setTray = (tray: Tray) => {
   tray.setTitle(config.APP_NAME)
-  tray.setToolTip(`config.APP_NAME:test\nname:${config.APP_NAME}`)
+  tray.setToolTip(`QQ:929040862 \n 应用名称:${config.APP_NAME} \n 声音:关闭`)
   tray.addListener('click', () => {
     GlobalObj.window?.show()
   })

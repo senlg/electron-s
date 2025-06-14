@@ -5,7 +5,6 @@ import {
   ElectronViteConfig,
   externalizeDepsPlugin,
   loadEnv
-  // bytecodePlugin
 } from 'electron-vite'
 // 渲染端插件
 import vue from '@vitejs/plugin-vue'
@@ -35,7 +34,6 @@ export default defineConfig(({ command, mode }): ElectronViteConfig => {
           input: {
             index: resolve(__dirname, 'src/main/index.ts'),
             'utlis/index': resolve(__dirname, 'src/utils/index.ts'),
-            // 'childProcess/child': resolve(__dirname, 'src/main/childProcess/child.ts'),
             ...getChildProcessEntries()
           }
         }
@@ -58,12 +56,14 @@ export default defineConfig(({ command, mode }): ElectronViteConfig => {
     }
   }
   const a1 = ['main', 'preload']
-  const a2 = ['main', 'preload', 'renderer']
+  const a2 = ['renderer']
   if (command === 'build') {
+    // 字节码加固  不能同时混淆和加固 会有冲突
     a1.forEach(function (key) {
       config[key].plugins.push(bytecodePlugin(), externalizeDepsPlugin())
     })
 
+    // 混淆
     a2.forEach(function (key) {
       if (config[key].build) {
         config[key].build.minify = true
@@ -74,7 +74,7 @@ export default defineConfig(({ command, mode }): ElectronViteConfig => {
       }
     })
   } else if (command === 'serve') {
-    a2.forEach(function (key) {
+    a1.concat(a2).forEach(function (key) {
       if (config[key].build) {
         config[key].build.sourcemap = true
       } else {
