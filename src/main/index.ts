@@ -3,7 +3,7 @@ import { electronApp } from '@electron-toolkit/utils'
 
 import { GlobalObj } from './global/index'
 import { createMainWindow } from './service/window'
-import { appMountListener } from './service/app'
+import { initAppMountListener } from './service/app'
 import { mountIpcApi } from './control'
 import { mainWindowConfig } from './global/config'
 import { initDb } from './db'
@@ -11,10 +11,14 @@ import { migrateDb } from './db/migrateDb'
 import { ViewManager } from './service/viewManager'
 import { initCrashReporter } from './service/crashReporter'
 import { initTray } from './service/tray'
+import { testPuppeteer } from './service/puppeteer'
+
+testPuppeteer()
 
 // app启动之前的操作
 const beforeStart = async () => {
   try {
+    app.commandLine.appendSwitch('remote-debugging-port', '9990')
     // 运行prisma 迁移 看看是否更新了数据库结构
     await migrateDb()
     return true
@@ -31,7 +35,7 @@ async function init() {
   // 创建系统托盘
   initTray()
   // 应用挂载事件监听
-  appMountListener()
+  initAppMountListener()
   // 初始化全局view管理对象
   GlobalObj.viewManager = new ViewManager()
   // 初始化赋值数据库
@@ -42,6 +46,7 @@ async function main() {
   console.log('func string: %s', beforeStart.toString())
 
   const isStart = await beforeStart()
+
   if (isStart) {
     // 应用准备进行窗口的创建
     app.whenReady().then(async () => {
@@ -55,8 +60,6 @@ async function main() {
     })
   }
 }
-
-
 
 // 打印路径
 ;(() => {

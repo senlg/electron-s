@@ -30,7 +30,8 @@ export class ViewManager {
           ...viewConfig,
           webPreferences: {
             preload: path.join(__dirname, '../preload/index.js'),
-            sandbox: false
+            sandbox: false,
+            devTools: true
           }
         })
         view.webContents.openDevTools()

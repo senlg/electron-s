@@ -8,6 +8,7 @@ extraResources:
     to: 'icons/'
 directories:
   buildResources: build
+# electronVersion:  34.2.0
 files:
   - '!**/.vscode/*'
   - '!src/*'
