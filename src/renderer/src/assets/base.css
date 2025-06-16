@@ -29,6 +29,8 @@
   --color-background-mute: var(--ev-c-black-mute);
 
   --color-text: var(--ev-c-text-1);
+  --app-border-radius: 8px;
+  --app-border-color: #3c3c3cfe;
 }
 
 *,

@@ -7,6 +7,7 @@ import {
   loadEnv
 } from 'electron-vite'
 // 渲染端插件
+import react from '@vitejs/plugin-react-swc'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import path from 'path'
@@ -16,7 +17,7 @@ export default defineConfig(({ command, mode }): ElectronViteConfig => {
   const envDir = './src/env'
   const env = loadEnv(mode, envDir)
   console.log(env, mode)
-  const config: any & ElectronViteConfig = {
+  const config: ElectronViteConfig = {
     main: {
       plugins: [],
       envDir,
@@ -45,14 +46,16 @@ export default defineConfig(({ command, mode }): ElectronViteConfig => {
     },
     renderer: {
       envDir,
+      // server: {
+      //   port: 9222
+      // },
       resolve: {
         alias: {
           '@renderer': resolve('src/renderer/src'),
           '@': resolve('./src')
         }
       },
-
-      plugins: [vue(), UnoCSS()]
+      plugins: [vue(), UnoCSS(), react()]
     }
   }
   const a1 = ['main', 'preload']

@@ -1,9 +1,9 @@
 @import './base.css';
 
 #app {
-  border-radius: 5px;
+  border-radius: var(--app-border-radius);
   padding: 10px;
-  border: #484848 solid 1px;
+  border: var(--app-border-color) solid 1px;
   overflow: hidden;
   height: 100vh;
   background-image: url('./wavy-lines.svg');

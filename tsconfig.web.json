@@ -6,11 +6,12 @@
     "src/renderer/src/**/*.vue",
     "src/preload/*.d.ts",
     "src/declare/*",
-    "src/main/control/*"
+    "src/main/control/*",
   ],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "paths": {
       "@renderer/*": [
         "src/renderer/src/*"

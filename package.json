@@ -29,17 +29,20 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
     "axios": "^1.8.2",
-    "bufferutil": "^4.0.9",
     "electron-updater": "^6.3.9",
-    "puppeteer": "^24.9.0",
-    "utf-8-validate": "^6.0.5"
+    "puppeteer": "^24.9.0"
   },
   "devDependencies": {
+    "utf-8-validate": "^6.0.5",
+    "bufferutil": "^4.0.9",
     "@electron-toolkit/eslint-config-prettier": "3.0.0",
     "@electron-toolkit/eslint-config-ts": "^3.0.0",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@prisma/client": "^6.5.0",
     "@types/node": "^22.13.4",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react-swc": "^3.10.2",
     "@vitejs/plugin-vue": "^5.2.1",
     "asar": "^3.2.0",
     "electron": "^34.2.0",

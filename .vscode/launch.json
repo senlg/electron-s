@@ -21,7 +21,7 @@
       "request": "attach",
       "type": "chrome",
       "webRoot": "${workspaceFolder}/src/renderer",
-      "timeout": 60000,
+      "timeout": 30000,
       "presentation": {
         "hidden": true
       }

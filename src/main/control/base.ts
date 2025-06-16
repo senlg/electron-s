@@ -5,6 +5,11 @@ export class Api<T extends ApiClass> {
   constructor(apiClass: T) {
     this.apiClass = apiClass
   }
+
+  init() {
+    this.on()
+    this.invoke()
+  }
   on() {
     ipcMain.on(`${this.apiClass.constructor.name}:send`, (event, arg: requestBody) => {
       let { eventName, params = {} } = arg
