@@ -29,3 +29,16 @@ export const initAppMountListener = () => {
     // GlobalObj.db?.$disconnect()
   })
 }
+
+class AppAction {
+  quit() {
+    app.quit()
+  }
+
+  hidden() {
+    app.hide()
+    app.exit
+  }
+}
+
+export const appAction = new AppAction()

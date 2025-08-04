@@ -3,6 +3,7 @@ import { Menu, MenuItem, nativeImage, Tray } from 'electron'
 import logoIco from '@/../resources/icons/icon.ico'
 import logoPng from '@/../resources/icons/icon.png'
 import { config } from '@main/global/config'
+import { appAction } from './app'
 import path from 'path'
 
 export const initTray = () => {
@@ -17,7 +18,10 @@ export const initTray = () => {
   let menu: (MenuItem | Electron.MenuItemConstructorOptions)[] = [
     {
       icon: iconPng,
-      label: '测试'
+      label: '退出',
+      click: () => {
+        appAction.quit()
+      }
     }
   ]
   const contextMenu = Menu.buildFromTemplate(menu)
