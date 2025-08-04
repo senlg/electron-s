@@ -8,7 +8,6 @@ import {
 } from 'electron-vite'
 // 渲染端插件
 import react from '@vitejs/plugin-react-swc'
-import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
 import path from 'path'
 import fs from 'fs'
@@ -55,7 +54,7 @@ export default defineConfig(({ command, mode }): ElectronViteConfig => {
           '@': resolve('./src')
         }
       },
-      plugins: [vue(), UnoCSS(), react()]
+      plugins: [UnoCSS(), react()]
     }
   }
   const a1 = ['main', 'preload']
