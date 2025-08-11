@@ -48,6 +48,17 @@ export default defineConfig(({ command, mode }): ElectronViteConfig => {
       // server: {
       //   port: 9222
       // },
+      build: {},
+      esbuild: {
+        drop: mode === 'build' ? ['console', 'debugger'] : []
+      },
+      css: {
+        modules: {
+          scopeBehaviour: 'local',
+          localsConvention: 'camelCaseOnly',
+          globalModulePaths: [/\.global\.(less|css|scss)$/]
+        }
+      },
       resolve: {
         alias: {
           '@renderer': resolve('src/renderer/src'),

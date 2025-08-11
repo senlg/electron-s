@@ -11,14 +11,15 @@ import { migrateDb } from './db/migrateDb'
 import { ViewManager } from './service/viewManager'
 import { initCrashReporter } from './service/crashReporter'
 import { initTray } from './service/tray'
-import { testPuppeteer } from './service/puppeteer'
+// import { testPuppeteer } from './service/puppeteer'
+// testPuppeteer()
 
-testPuppeteer()
 
 // app启动之前的操作
 const beforeStart = async () => {
   try {
-    app.commandLine.appendSwitch('remote-debugging-port', '9990')
+    // 放在最顶端、createWindow() 之前
+    app.commandLine.appendSwitch('remote-debugging-port', '9222')
     // 运行prisma 迁移 看看是否更新了数据库结构
     await migrateDb()
     return true

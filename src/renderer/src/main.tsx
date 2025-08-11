@@ -9,8 +9,10 @@ import 'virtual:uno.css'
 
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-
+import { Router } from './router'
 const root = createRoot(document.getElementById('app')as HTMLElement );
 root.render(<React.StrictMode>
-    {"hello world"}
+    <Router>
+
+    </Router>
 </React.StrictMode>);

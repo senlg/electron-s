@@ -13,8 +13,6 @@ export const mainWindowConfig: myWindowConfig = {
   minHeight: 720,
   minWidth: 1250,
   title: import.meta.env.VITE_APP_TITLE,
-  minHeight: 700,
-  minWidth: 1245,
   webPreferences: {
     preload: path.join(__dirname, '../preload/index.js'),
     sandbox: false

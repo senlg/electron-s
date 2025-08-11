@@ -20,6 +20,9 @@ export function createMainWindow(config: myWindowConfig): BrowserWindow {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+    console.group('ELECTRON_RENDERER_URL')
+    console.log(process.env['ELECTRON_RENDERER_URL'])
+    console.groupEnd()
     bw.loadURL(process.env['ELECTRON_RENDERER_URL'])
   } else {
     console.log(path.join(__dirname))
