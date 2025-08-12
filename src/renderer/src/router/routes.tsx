@@ -1,27 +1,45 @@
-import { createMemoryRouter, createBrowserRouter, RouterProvider, NavLink } from 'react-router'
+import { RouterProvider, NavLink, createBrowserRouter } from 'react-router'
 
 export const router = createBrowserRouter([
     {
         index: true,
         Component: () => {
             return <>
-                home
-                <NavLink to={'/test'}>test</NavLink>
+
+                index
+                <NavLink to={'/login'}>login</NavLink>
             </>
         }
     },
     {
-        path: '/test',
+        path: '/login',
+        Component: () => {
+            return <>
+                Login
+                <NavLink to={'/home'}>home</NavLink>
+            </>
+        }
+    },
+    {
+        path: '/home',
         Component: () => {
             return <>
                 home
+                <NavLink to={'/login'}>login</NavLink>
+            </>
+        }
+    },
+    {
+        path: '*',
+        Component: () => {
+            return <>
+                <div style={{ backgroundColor: 'red' }}>404</div>
                 <NavLink to={'/'}>home</NavLink>
             </>
         }
     }
-], {
-    basename: '/app'
-})
+
+])
 
 
 export const Router = () => {

@@ -23,7 +23,7 @@ export function createMainWindow(config: myWindowConfig): BrowserWindow {
     console.group('ELECTRON_RENDERER_URL')
     console.log(process.env['ELECTRON_RENDERER_URL'])
     console.groupEnd()
-    bw.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    bw.loadURL(`${process.env['ELECTRON_RENDERER_URL']}`)
   } else {
     console.log(path.join(__dirname))
 
